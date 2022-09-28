@@ -1,18 +1,17 @@
-from concurrent.futures import process, thread
-from threading import Thread
 from flask import Flask, request
 from flask_cors import cross_origin
 import os
 import calendar
 import time
-import threading
+
+if not os.path.exists('upload/'):
+        os.makedirs('upload/')
 
 app = Flask(__name__)
-app.run(host='127.0.0.1', port=5000, threaded=True)
+# app.run(host='127.0.0.1', port=5000, debug=True)
 
-@app.route("/")
-@cross_origin()
-def hello_world():
+@app.route('/')
+def index():
     return "<p>server started</p>"
 
 @app.route('/upload',methods=['POST'])
@@ -44,3 +43,5 @@ def send_file():
 		'fileNameSave':str(nowTime) + str(nowTime) + suffix,
 		'url':url
 	}
+
+app.run()

@@ -10,3 +10,5 @@ def hello(name):
 @app.route('/')
 def index():
     return 'Index Page'
+
+app.run()
